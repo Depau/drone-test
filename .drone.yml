@@ -14,6 +14,7 @@ steps:
       TZ: Europe/Rome
     commands:
       - pacman -Syu --noconfirm libvirt util-linux pciutils usbutils lshw dtc
+      - virt-host-validate || true
       - lscpu || true
       - free -h || true
       - lspci || true
@@ -37,6 +38,7 @@ steps:
       TZ: Europe/Rome
     commands:
       - pacman -Syu --noconfirm libvirt util-linux pciutils usbutils lshw
+      - virt-host-validate || true
       - lscpu || true
       - free -h || true
       - lspci || true
