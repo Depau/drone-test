@@ -1,0 +1,45 @@
+---
+kind: pipeline
+type: docker
+name: alarm-aarch64
+
+platform:
+  os: linux
+  arch: arm64
+
+steps:
+  - name: probe
+    image: depau/archlinux-daily:aarch64
+    environment:
+      TZ: Europe/Rome
+    commands:
+      - pacman -Syu --noconfirm libvirt util-linux pciutils usbutils lshw dtc
+      - lscpu || true
+      - free -h || true
+      - lspci || true
+      - lsusb || true
+      - lshw || true
+      - dtc -I fs -O dts /sys/firmware/devicetree/base || true
+
+---
+kind: pipeline
+type: docker
+name: archlinux-x86_64
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+  - name: probe
+    image: depau/archlinux-daily:x86_64
+    environment:
+      TZ: Europe/Rome
+    commands:
+      - pacman -Syu --noconfirm libvirt util-linux pciutils usbutils lshw
+      - lscpu || true
+      - free -h || true
+      - lspci || true
+      - lsusb || true
+      - lshw || true
+
