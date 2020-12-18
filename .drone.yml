@@ -13,7 +13,8 @@ steps:
     environment:
       TZ: Europe/Rome
     commands:
-      - pacman -Syu --noconfirm libvirt util-linux pciutils usbutils lshw dtc
+      - pacman -Syu --noconfirm libvirt util-linux pciutils usbutils lshw dtc procps-ng
+      - uname -a
       - virt-host-validate || true
       - lscpu || true
       - free -h || true
@@ -37,7 +38,8 @@ steps:
     environment:
       TZ: Europe/Rome
     commands:
-      - pacman -Syu --noconfirm libvirt util-linux pciutils usbutils lshw
+      - pacman -Syu --noconfirm libvirt util-linux pciutils usbutils lshw procps-ng
+      - uname -a
       - virt-host-validate || true
       - lscpu || true
       - free -h || true
